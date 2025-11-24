@@ -94,7 +94,7 @@ export function Contact() {
                   <Input placeholder="الاسم" className="border-primary/20 focus:border-secondary" />
                 </div>
                 <div>
-                  <Input type="tel" placeholder="رقم الهاتف" className="border-primary/20 focus:border-secondary" />
+                  <Input type="tel" placeholder="رقم الهاتف" className="border-primary/20 focus:border-secondary text-right placeholder:text-right " />
                 </div>
                 <div>
                   <Input

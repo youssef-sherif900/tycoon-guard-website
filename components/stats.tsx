@@ -1,5 +1,6 @@
 import { Building2, Award, Users, Briefcase, Target } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
+import CountUp from "@/components/CountUp"
 
 const stats = [
   { icon: Building2, label: "المحافظات", value: "27+" },
@@ -24,7 +25,7 @@ export function Stats() {
             >
               <CardContent className="p-6 text-center">
                 <stat.icon className="h-12 w-12 text-secondary mx-auto mb-4" />
-                <div className="text-4xl font-bold text-secondary mb-2">{stat.value}</div>
+                <CountUp className="text-4xl font-bold text-secondary mb-2" to={stat.value} from={0} duration={1} separator="," direction="up" /> 
                 <div className="text-primary-foreground/80">{stat.label}</div>
               </CardContent>
             </Card>
