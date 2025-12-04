@@ -5,9 +5,9 @@ import CountUp from "@/components/CountUp"
 const stats = [
   { icon: Building2, label: "المحافظات", value: "27+" },
   { icon: Award, label: "سنين الخبرة", value: "12+" },
-  { icon: Users, label: "العملاء", value: "500+" },
-  { icon: Briefcase, label: "قوة العمل", value: "1000+" },
-  { icon: Target, label: "المشاريع", value: "120+" },
+  { icon: Users, label: "العملاء", value: "٨٦+" },
+  { icon: Briefcase, label: "قوة العمل", value: "٤٧٥٠+" },
+  { icon: Target, label: "المشاريع", value: "٢٣١+" },
 ]
 
 export function Stats() {
