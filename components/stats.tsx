@@ -7,7 +7,7 @@ const stats = [
   { icon: Award, label: "سنين الخبرة", value: "12+" },
   { icon: Users, label: "العملاء", value: "500+" },
   { icon: Briefcase, label: "قوة العمل", value: "1000+" },
-  { icon: Target, label: "المشاريع", value: "800+" },
+  { icon: Target, label: "المشاريع", value: "120+" },
 ]
 
 export function Stats() {

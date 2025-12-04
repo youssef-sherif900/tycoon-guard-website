@@ -15,7 +15,7 @@ export function Header() {
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3">
-            <Image src="/logo.jpg" alt="Tycoon Guard Logo" width={60} height={60} className="rounded-full" />
+            <Image src="/logo.jpg" alt="Tycoon Guard Logo" width={75} height={75} className="rounded-full" />
             <div className="hidden md:block">
               <h1 className="text-xl font-bold text-secondary">تايكون جارد</h1>
               <p className="text-xs text-secondary/80">Security & Safety</p>

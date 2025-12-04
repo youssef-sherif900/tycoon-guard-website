@@ -79,7 +79,7 @@ export function Contact() {
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">العنوان</p>
-                    <p className="text-lg font-bold text-foreground">مصر - القاهرة</p>
+                    <p className="text-lg font-bold text-foreground">الإسكندرية - برج العرب - الساحل الشمالى - القاهره</p>
                   </div>
                 </CardContent>
               </Card>
