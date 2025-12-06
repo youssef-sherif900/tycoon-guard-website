@@ -1,6 +1,6 @@
 "use client"
 import { useInView, useMotionValue, useSpring } from 'motion/react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef } from 'react';
 
 interface CountUpProps {
   to: number;
@@ -28,7 +28,6 @@ export default function CountUp({
   onEnd
 }: CountUpProps) {
   const ref = useRef<HTMLSpanElement>(null);
-  const [mounted, setMounted] = useState(false);
   const motionValue = useMotionValue(direction === 'down' ? to : from);
 
   const damping = 20 + 40 * (1 / duration);
@@ -40,10 +39,6 @@ export default function CountUp({
   });
 
   const isInView = useInView(ref, { once: true, margin: '0px' });
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   const getDecimalPlaces = (num: number): number => {
     const str = num.toString();
@@ -79,13 +74,13 @@ export default function CountUp({
   );
 
   useEffect(() => {
-    if (ref.current && mounted) {
+    if (ref.current) {
       ref.current.textContent = formatValue(direction === 'down' ? to : from);
     }
-  }, [from, to, direction, formatValue, mounted]);
+  }, [from, to, direction, formatValue]);
 
   useEffect(() => {
-    if (mounted && isInView && startWhen) {
+    if (isInView && startWhen) {
       if (typeof onStart === 'function') onStart();
 
       const timeoutId = setTimeout(() => {
@@ -104,11 +99,9 @@ export default function CountUp({
         clearTimeout(durationTimeoutId);
       };
     }
-  }, [mounted, isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration]);
+  }, [isInView, startWhen, motionValue, direction, from, to, delay, onStart, onEnd, duration]);
 
   useEffect(() => {
-    if (!mounted) return;
-    
     const unsubscribe = springValue.on('change', (latest: number) => {
       if (ref.current) {
         ref.current.textContent = formatValue(latest);
@@ -116,12 +109,7 @@ export default function CountUp({
     });
 
     return () => unsubscribe();
-  }, [mounted, springValue, formatValue]);
-
-  // Render initial value during SSR
-  if (!mounted) {
-    return <span className={className}>{formatValue(direction === 'down' ? to : from)}</span>;
-  }
+  }, [springValue, formatValue]);
 
   return <span className={className} ref={ref} />;
 }
