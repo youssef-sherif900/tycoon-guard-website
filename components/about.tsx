@@ -1,5 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
-import { Shield, Users, TrendingUp } from "lucide-react"
+import { Button } from "@/components/ui/button"
+import { Shield, Users, TrendingUp, ArrowLeft } from "lucide-react"
+import Link from "next/link"
 
 const features = [
   {
@@ -31,8 +33,9 @@ export function About() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
           <p className="text-secondary text-lg mb-2">لماذا نحن؟</p>
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">الذي نتميز به</h2>
-          <div className="h-1 w-24 bg-secondary mx-auto" />
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">لماذا تايكون جارد هي أفضل شركة أمن وحراسة</h2>
+          <p className="text-lg text-muted-foreground mt-4 max-w-3xl mx-auto">شركة أمن متخصصة تتميز بخبرة عسكرية وأمنية واسعة</p>
+          <div className="h-1 w-24 bg-secondary mx-auto mt-4" />
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
@@ -53,6 +56,15 @@ export function About() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Button asChild size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary hover:text-primary">
+            <Link href="/about" className="flex items-center gap-2">
+              اقرأ المزيد عن شركة أمن تايكون جارد
+              <ArrowLeft className="h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>

@@ -17,7 +17,7 @@ export function Footer() {
               </div>
             </div>
             <p className="text-primary-foreground/80 leading-relaxed mb-4">
-              شركة رائدة في مجال الأمن والحراسة بخبرة تتجاوز 12 عاماً
+              تايكون جارد - شركة أمن وحراسة رائدة في مصر بخبرة تتجاوز 12 عاماً. نقدم خدمات أمنية متكاملة على مدار الساعة.
             </p>
           </div>
 
@@ -31,13 +31,18 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="#about" className="text-primary-foreground/80 hover:text-secondary transition-colors">
+                <Link href="/about" className="text-primary-foreground/80 hover:text-secondary transition-colors">
                   من نحن
                 </Link>
               </li>
               <li>
-                <Link href="#services" className="text-primary-foreground/80 hover:text-secondary transition-colors">
+                <Link href="/services" className="text-primary-foreground/80 hover:text-secondary transition-colors">
                   خدماتنا
+                </Link>
+              </li>
+              <li>
+                <Link href="/why-us" className="text-primary-foreground/80 hover:text-secondary transition-colors">
+                  لماذا نحن
                 </Link>
               </li>
               <li>

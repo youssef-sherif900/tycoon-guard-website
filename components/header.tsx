@@ -27,13 +27,13 @@ export function Header() {
             <Link href="/" className="text-primary-foreground hover:text-secondary transition-colors">
               الرئيسية
             </Link>
-            <Link href="#about" className="text-primary-foreground hover:text-secondary transition-colors">
+            <Link href="/about" className="text-primary-foreground hover:text-secondary transition-colors">
               من نحن
             </Link>
-            <Link href="#services" className="text-primary-foreground hover:text-secondary transition-colors">
+            <Link href="/services" className="text-primary-foreground hover:text-secondary transition-colors">
               خدماتنا
             </Link>
-            <Link href="#why-us" className="text-primary-foreground hover:text-secondary transition-colors">
+            <Link href="/why-us" className="text-primary-foreground hover:text-secondary transition-colors">
               لماذا نحن
             </Link>
             <Link href="#gallery" className="text-primary-foreground hover:text-secondary transition-colors">
@@ -83,13 +83,13 @@ export function Header() {
               <Link href="/" className="text-primary-foreground hover:text-secondary transition-colors py-2">
                 الرئيسية
               </Link>
-              <Link href="#about" className="text-primary-foreground hover:text-secondary transition-colors py-2">
+              <Link href="/about" className="text-primary-foreground hover:text-secondary transition-colors py-2">
                 من نحن
               </Link>
-              <Link href="#services" className="text-primary-foreground hover:text-secondary transition-colors py-2">
+              <Link href="/services" className="text-primary-foreground hover:text-secondary transition-colors py-2">
                 خدماتنا
               </Link>
-              <Link href="#why-us" className="text-primary-foreground hover:text-secondary transition-colors py-2">
+              <Link href="/why-us" className="text-primary-foreground hover:text-secondary transition-colors py-2">
                 لماذا نحن
               </Link>
               <Link href="#gallery" className="text-primary-foreground hover:text-secondary transition-colors py-2">

@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { Shield, Briefcase, Camera, Phone } from "lucide-react"
+import { Shield, Briefcase, Camera, Phone, ArrowLeft } from "lucide-react"
+import Link from "next/link"
 
 const services = [
   {
@@ -27,8 +28,9 @@ export function Services() {
     <section id="services" className="py-20 bg-background">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">خدمات شركتنا في مجال الأمن والحراسة</h2>
-          <div className="h-1 w-24 bg-secondary mx-auto" />
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">خدمات شركة أمن وحراسة متخصصة في مصر</h2>
+          <p className="text-lg text-muted-foreground mt-4">تايكون جارد - شركة أمن رائدة تقدم حلول أمنية متكاملة</p>
+          <div className="h-1 w-24 bg-secondary mx-auto mt-4" />
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8 items-center mb-12">
@@ -42,8 +44,8 @@ export function Services() {
 
           <div className="space-y-6">
             <p className="text-lg leading-relaxed text-muted-foreground">
-              تايكون جارد لخدمات الأمن والحراسة وإدارة المشاريع. تأسست الشركة على يد فريق متخصص من الخبراء الأمنيين وذوي
-              الخلفية العسكرية. وتتمتع الشركة بخبرة واسعة في هذا المجال تتجاوز 12 عاماً. واستمدت الشركة مكانتها الرائدة
+              تايكون جارد شركة أمن متخصصة في خدمات الأمن والحراسة وإدارة المشاريع. تأسست الشركة على يد فريق متخصص من الخبراء الأمنيين وذوي
+              الخلفية العسكرية. وتتمتع شركة أمن تايكون جارد بخبرة واسعة في هذا المجال تتجاوز 12 عاماً. واستمدت الشركة مكانتها الرائدة
               في هذا المجال لما تتمتع به من أنظمة إدارية قوية وكيان يتميز بالانضباط والمتابعة...
             </p>
             <p className="text-lg leading-relaxed text-muted-foreground">
@@ -76,6 +78,15 @@ export function Services() {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="text-center mt-12">
+          <Button asChild size="lg" variant="outline" className="border-secondary text-secondary hover:bg-secondary hover:text-primary">
+            <Link href="/services" className="flex items-center gap-2">
+              اكتشف جميع خدمات شركة أمن تايكون جارد
+              <ArrowLeft className="h-5 w-5" />
+            </Link>
+          </Button>
         </div>
       </div>
     </section>
