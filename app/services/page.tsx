@@ -43,7 +43,7 @@ const services = [
       "نقاط تفتيش أمنية",
       "استجابة سريعة للطوارئ",
     ],
-    image: "/security-guards-professional-team.jpg",
+    image: "/guard-images/guard-car-check.jpeg",
   },
   {
     icon: Briefcase,
@@ -57,7 +57,7 @@ const services = [
       "تقييم المخاطر",
       "تطوير الخطط الأمنية",
     ],
-    image: "/modern-management-office.jpg",
+    image: "/guard-images/guard-construction-site.jpeg",
   },
   {
     icon: Camera,
@@ -71,7 +71,7 @@ const services = [
       "تسجيل ومتابعة مستمرة",
       "صيانة ودعم فني",
     ],
-    image: "/security-control-room.jpg",
+    image: "/guard-images/guard-camera-2.jpeg",
   },
 ]
 

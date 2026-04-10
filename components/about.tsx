@@ -9,21 +9,21 @@ const features = [
     title: "تراكم الخبرة",
     description:
       "وذلك بفضل وجود نخبة من الضباط السابقين من القوات المسلحة والشرطة الذين لديهم خبرة في المجال الأمني والمعروفين بكفاءتهم",
-    image: "/military-officers-security.jpg",
+    image: "/guard-images/guard-fence.jpeg",
   },
   {
     icon: TrendingUp,
     title: "النمط الإداري",
     description:
       "يتميز الأسلوب الإداري في تايكون جارد بعناصر مهمة جداً في العملية الإدارية والتي تشمل اتباع المنهج العلمي، والأسلوب الحديث في الإدارة، والخبرة الواسعة التي تمتلكها الإدارة",
-    image: "/modern-management-office.jpg",
+    image: "/guard-images/guard-car-check.jpeg",
   },
   {
     icon: Users,
     title: "كفاءة العنصر البشري",
     description:
       "نظراً لأهمية الدور الذي يقوم به الفرد والمهام المطلوبة منه، فإننا نقوم باختيار الأفراد بعناية فائقة ووفقاً لمجموعة من المعايير التي نتبعها",
-    image: "/professional-security-team.jpg",
+    image: "/guard-images/guard-camera.jpeg",
   },
 ]
 
@@ -45,7 +45,7 @@ export function About() {
                 <img
                   src={feature.image || "/placeholder.svg"}
                   alt={feature.title}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover object-[20%_20%]"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-primary to-transparent opacity-60" />
                 <feature.icon className="absolute bottom-4 right-4 h-12 w-12 text-secondary" />

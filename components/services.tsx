@@ -36,7 +36,7 @@ export function Services() {
         <div className="grid lg:grid-cols-2 gap-8 items-center mb-12">
           <div>
             <img
-              src="/security-guards-professional-team.jpg"
+              src="/guard-images/guard-car-check.jpeg"
               alt="Tycoon Guard Services"
               className="rounded-lg shadow-2xl w-full"
             />

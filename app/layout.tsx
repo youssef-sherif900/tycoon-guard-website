@@ -54,7 +54,7 @@ export const metadata: Metadata = {
       "حلول أمن وحراسة متكاملة للمنشآت الحكومية والخاصة مع فريق ذو خبرة عسكرية وأمنية لأكثر من 12 عاماً.",
     images: [
       {
-        url: "/security-guards-professional-team.jpg",
+        url: "/guard-images/guard-receiption.jpeg",
         width: 1200,
         height: 630,
         alt: "تايكون جارد - فريق الأمن والحراسة المحترف",
@@ -66,7 +66,7 @@ export const metadata: Metadata = {
     title: "تايكون جارد | شركة الأمن والحراسة الموثوق بها في مصر",
     description:
       "خدمات أمن وحراسة متكاملة للمنشآت الحكومية والخاصة والفعاليات مع فريق محترف وخبرة تتجاوز 12 عاماً.",
-    images: ["/security-guards-professional-team.jpg"],
+    images: ["/guard-images/guard-receiption.jpeg"],
   },
 
   icons: {

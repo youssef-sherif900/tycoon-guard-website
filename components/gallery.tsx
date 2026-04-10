@@ -2,10 +2,10 @@ import { Button } from "@/components/ui/button"
 import { Phone } from "lucide-react"
 
 const images = [
-  "/security-guards-patrol.jpg",
-  "/security-control-room.jpg",
-  "/professional-security-team.jpg",
-  "/security-camera-system.png",
+  "/guard-images/guard-camera-2.jpeg",
+  "/guard-images/guard-mall.jpeg",
+  "/guard-images/guard-play-yard.jpeg",
+  "/guard-images/guard-storage.jpeg",
 ]
 
 export function Gallery() {

@@ -10,21 +10,21 @@ const slides = [
     subtitle: "أفضل شركة أمن وحراسة في مصر",
     description:
       "تايكون جارد شركة أمن متخصصة في خدمات الأمن والحراسة وإدارة المشاريع. تأسست الشركة على يد فريق متخصص من الخبراء الأمنيين وذوي الخلفية العسكرية.",
-    image: "/security-guards-professional-team.jpg",
+    image: "/guard-images/guard-receiption.jpeg",
   },
   {
     title: "حماية متطورة",
     subtitle: "أنظمة أمنية على أعلى مستوى",
     description:
       "نوفر أحدث تقنيات المراقبة والأمن مع فريق مدرب على أعلى مستوى لضمان سلامتك وحماية ممتلكاتك على مدار الساعة.",
-    image: "/security-control-room.jpg",
+    image: "/guard-images/guard-camera.jpeg",
   },
   {
     title: "خبرة 12 عاماً",
     subtitle: "ثقة وكفاءة مثبتة",
     description:
       "أكثر من عقد من الخبرة في تقديم حلول أمنية متكاملة للمنشآت الحكومية والخاصة والأفراد في جميع أنحاء مصر.",
-    image: "/security-guards-patrol.jpg",
+    image: "/guard-images/guard-fence.jpeg",
   },
 ]
 
@@ -70,7 +70,7 @@ export function Hero() {
               }`}
             >
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance animate-in fade-in slide-in-from-bottom-4 duration-700">
-                <span className="text-secondary drop-shadow-lg">{slide.title}</span>
+                <span className="text-secondary drop-shadow-lg leading-relaxed">{slide.title}</span>
                 <br />
                 {slide.subtitle}
               </h1>
