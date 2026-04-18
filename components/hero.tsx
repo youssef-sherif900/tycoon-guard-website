@@ -29,10 +29,10 @@ const slides = [
 ]
 
 export function Hero() {
-  
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
+    
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 5000)
