@@ -29,6 +29,7 @@ const slides = [
 ]
 
 export function Hero() {
+  
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
