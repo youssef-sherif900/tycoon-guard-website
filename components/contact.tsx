@@ -63,10 +63,10 @@ export function Contact() {
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">البريد الإلكتروني</p>
                     <a
-                      href="mailto:info@tycoonguard.com"
+                      href="mailto:info@tycoon--guard.com"
                       className="text-xl font-bold text-foreground hover:text-secondary transition-colors"
                     >
-                      info@tycoonguard.com
+                      info@tycoon-guard.com
                     </a>
                   </div>
                 </CardContent>
