@@ -32,7 +32,7 @@ export function Hero() {
   const [currentSlide, setCurrentSlide] = useState(0)
 
   useEffect(() => {
-    
+
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % slides.length)
     }, 5000)
@@ -52,23 +52,21 @@ export function Hero() {
       {slides.map((slide, index) => (
         <div
           key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            index === currentSlide ? "opacity-100" : "opacity-0"
-          }`}
+          className={`absolute inset-0 transition-opacity duration-1000 ${index === currentSlide ? "opacity-100" : "opacity-0"
+            }`}
         >
           <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url('${slide.image}')` }} />
           <div className="absolute inset-0 bg-gradient-to-br from-primary/80 via-primary/60 to-primary/40 bg-black/40 mix-blend-multiply" />
         </div>
-      ))} 
+      ))}
 
       <div className="container mx-auto px-4 relative z-10">
         <div className="max-w-4xl mx-auto text-center text-primary-foreground">
           {slides.map((slide, index) => (
             <div
               key={index}
-              className={`transition-all duration-700 ${
-                index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 absolute inset-0"
-              }`}
+              className={`transition-all duration-700 ${index === currentSlide ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 absolute inset-0"
+                }`}
             >
               <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance animate-in fade-in slide-in-from-bottom-4 duration-700">
                 <span className="text-secondary drop-shadow-lg leading-relaxed">{slide.title}</span>
@@ -113,11 +111,10 @@ export function Hero() {
           <button
             key={index}
             onClick={() => setCurrentSlide(index)}
-            className={`h-3 rounded-full transition-all ${
-              index === currentSlide
+            className={`h-3 rounded-full transition-all ${index === currentSlide
                 ? "bg-secondary w-12"
                 : "bg-primary-foreground/50 w-3 hover:bg-primary-foreground/70"
-            }`}
+              }`}
             aria-label={`الذهاب إلى الشريحة ${index + 1}`}
           />
         ))}
