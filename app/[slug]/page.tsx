@@ -1,11 +1,12 @@
 import type { Metadata } from "next"
 import { notFound } from "next/navigation"
+import Link from "next/link"
 import { SEO_PAGES } from "@/lib/seo-data"
 import { Header } from "@/components/header"
 import { Footer } from "@/components/footer"
-import { ServiceSidebar } from "@/components/service-sidebar"
+import { ServicesGuide } from "@/components/service-sidebar"
 import { CTA } from "@/components/cta"
-import { Phone, CheckCircle2, ShieldCheck, Clock, MapPin, Zap } from "lucide-react"
+import { Phone, ShieldCheck, Clock, MapPin, Zap } from "lucide-react"
 import Image from "next/image"
 
 interface PageProps {
@@ -47,11 +48,17 @@ export default async function SEOServicePage({ params }: PageProps) {
     notFound()
   }
 
+  const categoryLabel =
+    page.category === "service"
+      ? "خدماتنا الأمنية"
+      : page.category === "industry"
+        ? "أمن القطاعات"
+        : "مناطق التغطية"
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero Section */}
       <section className="relative py-20 bg-primary overflow-hidden">
         <div className="absolute inset-0 opacity-20">
           <Image
@@ -65,11 +72,14 @@ export default async function SEOServicePage({ params }: PageProps) {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl text-right">
-            <nav className="flex items-center justify-start gap-2 text-secondary/80 mb-6 text-sm flex-row-reverse">
-              <a href="/" className="hover:text-secondary">الرئيسية</a>
+            <nav className="flex items-center justify-start gap-2 text-secondary/80 mb-6 text-sm flex-row-reverse flex-wrap">
+              <Link href="/" className="hover:text-secondary">الرئيسية</Link>
+              <span>/</span>
+              <Link href="/services" className="hover:text-secondary">الخدمات</Link>
               <span>/</span>
               <span className="text-secondary">{page.title}</span>
             </nav>
+            <p className="text-secondary/80 text-sm font-bold mb-3 tracking-wide">{categoryLabel}</p>
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
               {page.title}
             </h1>
@@ -80,95 +90,108 @@ export default async function SEOServicePage({ params }: PageProps) {
         </div>
       </section>
 
-      {/* Main Content Section */}
       <section className="py-16 container mx-auto px-4">
-        <div className="flex flex-col lg:flex-row gap-12">
+        <div className="max-w-4xl mx-auto space-y-12">
+          <div className="prose prose-invert prose-lg max-w-none text-right">
+            <h2 className="text-3xl font-bold text-primary mb-6 flex items-center gap-3 justify-end flex-row-reverse">
+              لماذا تختار تايكون جارد لخدمات {page.title}؟
+              <ShieldCheck className="text-secondary h-8 w-8" />
+            </h2>
+            <div className="space-y-6 mb-8 text-right">
+              {page.content.split("\n\n").map((paragraph, index) => (
+                <p key={index} className="text-gray-600 text-lg leading-loose">
+                  {paragraph.trim()}
+                </p>
+              ))}
+            </div>
 
-          {/* Content Column */}
-          <div className="flex-1 space-y-12 order-1 lg:order-2">
-            <div className="prose prose-invert prose-lg max-w-none text-right">
-              <h2 className="text-3xl font-bold text-primary mb-6 flex items-center gap-3 justify-end flex-row-reverse">
-                لماذا تختار تايكون جارد لخدمات {page.title}؟
-                <ShieldCheck className="text-secondary h-8 w-8" />
-              </h2>
-              <div className="space-y-6 mb-8 text-right">
-                {page.content.split('\n\n').map((paragraph, index) => (
-                  <p key={index} className="text-gray-600 text-lg leading-loose">
-                    {paragraph.trim()}
-                  </p>
+            {page.features && (
+              <div className="grid md:grid-cols-2 gap-6 my-12">
+                {page.features.map((feature, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-secondary/30 transition-all group"
+                  >
+                    <div className="bg-primary p-2 rounded-lg group-hover:bg-secondary transition-colors">
+                      <Zap className="h-5 w-5 text-secondary group-hover:text-primary" />
+                    </div>
+                    <span className="font-bold text-primary text-lg">{feature}</span>
+                  </div>
                 ))}
               </div>
+            )}
 
-              {page.features && (
-                <div className="grid md:grid-cols-2 gap-6 my-12">
-                  {page.features.map((feature, i) => (
-                    <div key={i} className="flex items-center gap-4 p-5 bg-gray-50 rounded-2xl border border-gray-100 hover:border-secondary/30 transition-all group">
-                      <div className="bg-primary p-2 rounded-lg group-hover:bg-secondary transition-colors">
-                        <Zap className="h-5 w-5 text-secondary group-hover:text-primary" />
-                      </div>
-                      <span className="font-bold text-primary text-lg">{feature}</span>
-                    </div>
-                  ))}
+            <h3 className="text-2xl font-bold text-primary mt-12 mb-6">
+              التزامنا في {page.title}
+            </h3>
+            <p className="text-gray-600 leading-loose">
+              نحن في تايكون جارد نؤمن بأن الأمن ليس مجرد تواجد مادي، بل هو منظومة متكاملة من التخطيط والتنفيذ.
+              عندما تختارنا لخدمات <strong>{page.title}</strong>، فإنك تحصل على دراسة أمنية دقيقة لمنشأتك،
+              وتحديد نقاط الضعف والقوة، وتوفير الكوادر البشرية والوسائل التقنية التي تضمن لك الحماية القصوى والهدوء التام.
+              يمكنك أيضاً الاطلاع على{" "}
+              <Link href="/services" className="text-secondary font-bold hover:underline">
+                صفحة الخدمات الكاملة
+              </Link>{" "}
+              أو مقارنة{" "}
+              <Link href="/security-services-prices" className="text-secondary font-bold hover:underline">
+                أسعار شركات الأمن
+              </Link>
+              .
+            </p>
+
+            <div className="bg-primary rounded-3xl p-8 md:p-12 text-white relative overflow-hidden my-16 shadow-2xl shadow-primary/30">
+              <div className="relative z-10 text-right">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4 text-secondary">
+                  جاهز لتأمين منشأتك بأعلى المعايير؟
+                </h3>
+                <p className="text-gray-300 mb-8 text-lg">
+                  تواصل معنا اليوم للحصول على استشارة أمنية مجانية ومعاينة ميدانية دقيقة لموقعك من قبل خبرائنا.
+                </p>
+                <div className="flex flex-wrap gap-4 justify-start flex-row-reverse">
+                  <a
+                    href="tel:01000006169"
+                    className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-secondary/90 transition-all transform hover:scale-105 shadow-xl shadow-secondary/20"
+                  >
+                    <Phone className="h-5 w-5" />
+                    اتصل بنا: 01000006169
+                  </a>
                 </div>
-              )}
+              </div>
+              <ShieldCheck className="absolute -bottom-10 -right-10 h-64 w-64 text-white/5 rotate-12" />
+            </div>
+          </div>
 
-              <h3 className="text-2xl font-bold text-primary mt-12 mb-6">
-                التزامنا في {page.title}
-              </h3>
-              <p className="text-gray-600 leading-loose">
-                نحن في تايكون جارد نؤمن بأن الأمن ليس مجرد تواجد مادي، بل هو منظومة متكاملة من التخطيط والتنفيذ.
-                عندما تختارنا لخدمات <strong>{page.title}</strong>، فإنك تحصل على دراسة أمنية دقيقة لمنشأتك،
-                وتحديد نقاط الضعف والقوة، وتوفير الكوادر البشرية والوسائل التقنية التي تضمن لك الحماية القصوى والهدوء التام.
+          <div className="grid md:grid-cols-3 gap-8">
+            <div className="text-center p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-shadow">
+              <Clock className="h-12 w-12 text-secondary mx-auto mb-4" />
+              <h4 className="font-bold text-primary text-xl mb-2">متاح 24/7</h4>
+              <p className="text-sm text-gray-500">نحن متواجدون دائماً لحمايتكم وتقديم الدعم الفني الفوري.</p>
+            </div>
+            <div className="text-center p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-shadow">
+              <MapPin className="h-12 w-12 text-secondary mx-auto mb-4" />
+              <h4 className="font-bold text-primary text-xl mb-2">تغطية شاملة</h4>
+              <p className="text-sm text-gray-500">
+                نغطي{" "}
+                <Link href="/security-companies-in-cairo" className="text-secondary hover:underline">القاهرة</Link>
+                ،{" "}
+                <Link href="/security-companies-in-giza" className="text-secondary hover:underline">الجيزة</Link>
+                ، و{" "}
+                <Link href="/security-companies-in-october" className="text-secondary hover:underline">أكتوبر</Link>
+                .
               </p>
-
-              {/* Call to Action Box */}
-              <div className="bg-primary rounded-3xl p-8 md:p-12 text-white relative overflow-hidden my-16 shadow-2xl shadow-primary/30">
-                <div className="relative z-10 text-right">
-                  <h3 className="text-2xl md:text-3xl font-bold mb-4 text-secondary">
-                    جاهز لتأمين منشأتك بأعلى المعايير؟
-                  </h3>
-                  <p className="text-gray-300 mb-8 text-lg">
-                    تواصل معنا اليوم للحصول على استشارة أمنية مجانية ومعاينة ميدانية دقيقة لموقعك من قبل خبرائنا.
-                  </p>
-                  <div className="flex flex-wrap gap-4 justify-start flex-row-reverse">
-                    <a
-                      href="tel:01000006169"
-                      className="inline-flex items-center gap-3 px-8 py-4 bg-secondary text-primary font-bold rounded-full hover:bg-secondary/90 transition-all transform hover:scale-105 shadow-xl shadow-secondary/20"
-                    >
-                      <Phone className="h-5 w-5" />
-                      اتصل بنا: 01000006169
-                    </a>
-                  </div>
-                </div>
-                <ShieldCheck className="absolute -bottom-10 -right-10 h-64 w-64 text-white/5 rotate-12" />
-              </div>
             </div>
-
-            {/* Additional Info / Areas */}
-            <div className="grid md:grid-cols-3 gap-8">
-              <div className="text-center p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-shadow">
-                <Clock className="h-12 w-12 text-secondary mx-auto mb-4" />
-                <h4 className="font-bold text-primary text-xl mb-2">متاح 24/7</h4>
-                <p className="text-sm text-gray-500">نحن متواجدون دائماً لحمايتكم وتقديم الدعم الفني الفوري.</p>
-              </div>
-              <div className="text-center p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-shadow">
-                <MapPin className="h-12 w-12 text-secondary mx-auto mb-4" />
-                <h4 className="font-bold text-primary text-xl mb-2">تغطية شاملة</h4>
-                <p className="text-sm text-gray-500">نغطي كافة محافظات مصر والمناطق الصناعية واللوجستية.</p>
-              </div>
-              <div className="text-center p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-shadow">
-                <ShieldCheck className="h-12 w-12 text-secondary mx-auto mb-4" />
-                <h4 className="font-bold text-primary text-xl mb-2">موثوقية تامة</h4>
-                <p className="text-sm text-gray-500">خبرة عسكرية وأمنية تتجاوز 12 عاماً في تأمين كبرى المشاريع.</p>
-              </div>
+            <div className="text-center p-8 border border-gray-100 rounded-3xl hover:shadow-xl transition-shadow">
+              <ShieldCheck className="h-12 w-12 text-secondary mx-auto mb-4" />
+              <h4 className="font-bold text-primary text-xl mb-2">موثوقية تامة</h4>
+              <p className="text-sm text-gray-500">خبرة عسكرية وأمنية تتجاوز 12 عاماً في تأمين كبرى المشاريع.</p>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Sidebar Column */}
-          <div className="lg:w-80 order-2 lg:order-1">
-            <ServiceSidebar />
-          </div>
-
+      <section className="py-16 bg-gray-50 border-t border-gray-100">
+        <div className="container mx-auto px-4">
+          <ServicesGuide showContact />
         </div>
       </section>
 

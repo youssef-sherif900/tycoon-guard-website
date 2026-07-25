@@ -2,95 +2,206 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
-import { SEO_PAGES } from "@/lib/seo-data"
+import { SEO_PAGES, type SEOPageData } from "@/lib/seo-data"
 import { cn } from "@/lib/utils"
-import { ChevronLeft, Shield, MapPin, Building2, Phone, MessageCircle } from "lucide-react"
+import {
+  ChevronLeft,
+  Shield,
+  MapPin,
+  Building2,
+  Phone,
+  MessageCircle,
+  ArrowLeft,
+} from "lucide-react"
 
-export function ServiceSidebar() {
+const categories = [
+  { id: "service" as const, name: "خدماتنا الأمنية", icon: Shield, description: "حلول أمن وحراسة متكاملة" },
+  { id: "industry" as const, name: "أمن القطاعات", icon: Building2, description: "تأمين متخصص حسب طبيعة المنشأة" },
+  { id: "location" as const, name: "مناطق التغطية", icon: MapPin, description: "تواجدنا في أهم المدن والمناطق" },
+]
+
+function GuideCard({
+  page,
+  isActive,
+}: {
+  page: SEOPageData
+  isActive: boolean
+}) {
+  return (
+    <Link
+      href={`/${page.slug}`}
+      className={cn(
+        "group relative flex flex-col justify-between rounded-2xl border p-5 transition-all duration-300",
+        isActive
+          ? "border-secondary bg-secondary text-primary shadow-lg shadow-secondary/20"
+          : "border-primary/10 bg-white hover:border-secondary/40 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+      )}
+    >
+      <div>
+        <h3
+          className={cn(
+            "text-base font-bold mb-2 leading-snug line-clamp-2",
+            isActive ? "text-primary" : "text-primary group-hover:text-secondary"
+          )}
+        >
+          {page.title}
+        </h3>
+        <p
+          className={cn(
+            "text-sm leading-relaxed line-clamp-2",
+            isActive ? "text-primary/70" : "text-muted-foreground"
+          )}
+        >
+          {page.description}
+        </p>
+      </div>
+      <div
+        className={cn(
+          "mt-4 flex items-center gap-2 text-sm font-bold",
+          isActive ? "text-primary" : "text-secondary"
+        )}
+      >
+        <span>اعرف المزيد</span>
+        <ArrowLeft className="h-4 w-4 transition-transform group-hover:-translate-x-1" />
+      </div>
+    </Link>
+  )
+}
+
+type ServicesGuideProps = {
+  /** When set, only show related pages (same category + a few others), excluding current */
+  currentSlug?: string
+  /** Compact mode for bottom of SEO pages */
+  relatedOnly?: boolean
+  showContact?: boolean
+  className?: string
+}
+
+export function ServicesGuide({
+  currentSlug,
+  relatedOnly = false,
+  showContact = true,
+  className,
+}: ServicesGuideProps) {
   const pathname = usePathname()
 
-  const categories = [
-    { id: "service", name: "خدماتنا الأمنية", icon: Shield },
-    { id: "industry", name: "أمن القطاعات", icon: Building2 },
-    { id: "location", name: "مناطق التغطية", icon: MapPin },
-  ]
+  const relatedPages = currentSlug
+    ? (() => {
+        const current = SEO_PAGES.find((p) => p.slug === currentSlug)
+        if (!current) return SEO_PAGES.filter((p) => p.slug !== currentSlug).slice(0, 6)
+        const sameCategory = SEO_PAGES.filter(
+          (p) => p.category === current.category && p.slug !== currentSlug
+        )
+        const others = SEO_PAGES.filter(
+          (p) => p.category !== current.category && p.slug !== currentSlug
+        )
+        return [...sameCategory, ...others].slice(0, 6)
+      })()
+    : []
 
   return (
-    <aside className="w-full lg:w-80 flex-shrink-0">
-      <div className="sticky top-24 space-y-6">
-        <div className="bg-primary p-6 rounded-3xl border border-secondary/20 shadow-2xl shadow-black/40 overflow-hidden relative">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-full -mr-16 -mt-16 blur-3xl" />
-          
-          <h3 className="text-xl font-bold text-secondary mb-8 border-r-4 border-secondary pr-4 relative z-10">
-            دليل الخدمات والمناطق
-          </h3>
-
-          <div className="space-y-8 relative z-10">
-            {categories.map((cat) => {
-              const pages = SEO_PAGES.filter(p => p.category === cat.id)
-              if (pages.length === 0) return null
-
-              return (
-                <div key={cat.id} className="space-y-3">
-                  <div className="flex items-center gap-2 text-secondary/60 text-xs font-bold uppercase tracking-widest mb-4">
-                    <cat.icon className="h-4 w-4" />
-                    <span>{cat.name}</span>
-                  </div>
-                  <nav className="flex flex-col gap-1">
-                    {pages.map((page) => {
-                      const isActive = pathname === `/${page.slug}`
-                      return (
-                        <Link
-                          key={page.slug}
-                          href={`/${page.slug}`}
-                          className={cn(
-                            "flex items-center justify-between p-3 rounded-xl transition-all duration-300 group text-sm",
-                            isActive 
-                              ? "bg-secondary text-primary font-bold shadow-lg shadow-secondary/20 translate-x-1" 
-                              : "text-primary-foreground/70 hover:bg-white/5 hover:text-secondary"
-                          )}
-                        >
-                          <span className="line-clamp-1">{page.title}</span>
-                          <ChevronLeft className={cn(
-                            "h-3 w-3 transition-transform duration-300",
-                            isActive ? "rotate-90 text-primary" : "group-hover:-translate-x-1 opacity-50"
-                          )} />
-                        </Link>
-                      )
-                    })}
-                  </nav>
-                </div>
-              )
-            })}
-          </div>
-        </div>
-
-        {/* Premium Contact Card */}
-        <div className="bg-secondary p-8 rounded-3xl text-primary shadow-2xl shadow-secondary/10 relative overflow-hidden group">
-          <div className="absolute top-0 left-0 w-full h-1 bg-primary/10 group-hover:h-full transition-all duration-500 pointer-events-none opacity-20" />
-          <h4 className="text-xl font-bold mb-2 relative z-10">تحتاج مساعدة؟</h4>
-          <p className="text-sm mb-6 opacity-80 leading-relaxed relative z-10">
-            خبرائنا متاحون الآن لتصميم خطة أمنية مخصصة لمنشأتك.
-          </p>
-          <div className="space-y-3 relative z-10">
-            <a 
-              href="tel:01000006169" 
-              className="flex items-center justify-center gap-3 p-4 bg-primary text-white rounded-2xl hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 hover:-translate-y-1"
-            >
-              <Phone className="h-4 w-4" />
-              <span className="font-bold">01000006169</span>
-            </a>
-            <a 
-              href="https://wa.me/201008379046" 
-              target="_blank"
-              className="flex items-center justify-center gap-3 p-4 bg-[#25D366] text-white rounded-2xl hover:bg-[#20bd5c] transition-all shadow-lg shadow-green-900/20 hover:-translate-y-1"
-            >
-              <MessageCircle className="h-4 w-4" />
-              <span className="font-bold">واتساب مباشر</span>
-            </a>
-          </div>
-        </div>
+    <section className={cn("w-full", className)}>
+      <div className="mb-10 text-right">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
+          {relatedOnly ? "صفحات ذات صلة" : "دليل الخدمات والمناطق"}
+        </h2>
+        <p className="text-muted-foreground text-lg max-w-2xl ml-auto ml-0">
+          {relatedOnly
+            ? "استكشف المزيد من خدماتنا ومناطق تغطيتنا لتعزيز أمان منشأتك."
+            : "تصفح خدماتنا الأمنية، أمن القطاعات، ومناطق التغطية في مصر — كل صفحة مصممة لمساعدتك في اختيار الحل المناسب."}
+        </p>
+        <div className="h-1 w-20 bg-secondary mt-4 mr-0" />
       </div>
-    </aside>
+
+      {relatedOnly && relatedPages.length > 0 ? (
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
+          {relatedPages.map((page) => (
+            <GuideCard
+              key={page.slug}
+              page={page}
+              isActive={pathname === `/${page.slug}`}
+            />
+          ))}
+        </div>
+      ) : (
+        <div className="space-y-14">
+          {categories.map((cat) => {
+            const pages = SEO_PAGES.filter((p) => p.category === cat.id)
+            if (pages.length === 0) return null
+
+            return (
+              <div key={cat.id}>
+                <div className="flex items-center gap-3 mb-6 justify-end flex-row-reverse sm:flex-row-reverse sm:justify-end mr-4">
+                  <div className="text-right">
+                    <h3 className="text-xl font-bold text-foreground">{cat.name}</h3>
+                    <p className="text-sm text-muted-foreground">{cat.description}</p>
+                  </div>
+                  <div className="p-3 rounded-xl bg-primary shrink-0">
+                    <cat.icon className="h-5 w-5 text-secondary" />
+                  </div>
+                </div>
+                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  {pages.map((page) => (
+                    <GuideCard
+                      key={page.slug}
+                      page={page}
+                      isActive={pathname === `/${page.slug}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )
+          })}
+        </div>
+      )}
+
+      {pathname !== "/services" && (
+        <div className="mt-10 text-center">
+          <Link
+            href="/services"
+            className="inline-flex items-center gap-2 text-secondary font-bold hover:underline"
+          >
+            {relatedOnly ? "عرض كل الخدمات والمناطق" : "العودة لصفحة الخدمات"}
+            <ChevronLeft className="h-4 w-4" />
+          </Link>
+        </div>
+      )}
+
+      {showContact && (
+        <div className="mt-12 bg-secondary rounded-3xl p-8 md:p-10 text-primary relative overflow-hidden">
+          <div className="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-8 text-right">
+            <div>
+              <h3 className="text-2xl font-bold mb-2">تحتاج مساعدة؟</h3>
+              <p className="opacity-80 leading-relaxed max-w-md">
+                خبرائنا متاحون الآن لتصميم خطة أمنية مخصصة لمنشأتك في أي منطقة في مصر.
+              </p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-3 shrink-0">
+              <a
+                href="tel:01000006169"
+                className="flex items-center justify-center gap-3 px-6 py-4 bg-primary text-white rounded-2xl hover:bg-primary/90 transition-all shadow-lg"
+              >
+                <Phone className="h-4 w-4" />
+                <span className="font-bold">01000006169</span>
+              </a>
+              <a
+                href="https://wa.me/201008379046"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] text-white rounded-2xl hover:bg-[#20bd5c] transition-all shadow-lg"
+              >
+                <MessageCircle className="h-4 w-4" />
+                <span className="font-bold">واتساب مباشر</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      )}
+    </section>
   )
+}
+
+/** @deprecated Use ServicesGuide — kept for compatibility */
+export function ServiceSidebar() {
+  return <ServicesGuide />
 }
