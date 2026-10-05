@@ -83,13 +83,13 @@ export function Footer() {
               </li>
               <li>
                 <a
-                  href="https://wa.me/201008379046"
+                  href="https://wa.me/201000006169"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 text-primary-foreground/80 hover:text-secondary transition-colors font-mono"
                 >
                   <MessageCircle className="h-4 w-4" />
-                  <span>01008379046</span>
+                  <span>01000006169</span>
                 </a>
               </li>
               <li>
@@ -125,8 +125,8 @@ export function Footer() {
           <h4 className="text-sm font-bold text-secondary/60 mb-6 text-center uppercase tracking-widest">المناطق والخدمات</h4>
           <div className="flex flex-wrap justify-center gap-x-4 gap-y-2">
             {SEO_PAGES.map((page) => (
-              <Link 
-                key={page.slug} 
+              <Link
+                key={page.slug}
                 href={`/${page.slug}`}
                 className="text-xs text-primary-foreground/40 hover:text-secondary transition-colors"
               >

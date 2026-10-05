@@ -44,12 +44,12 @@ export function Contact() {
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">واتساب</p>
                     <a
-                      href="https://wa.me/201008379046"
+                      href="https://wa.me/201000006169"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-xl font-bold text-foreground hover:text-secondary transition-colors"
                     >
-                      01008379046
+                      01000006169
                     </a>
                   </div>
                 </CardContent>

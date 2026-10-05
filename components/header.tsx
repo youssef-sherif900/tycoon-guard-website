@@ -59,7 +59,7 @@ export function Header() {
               className="border-secondary text-secondary hover:bg-secondary hover:text-primary bg-transparent"
             >
               <a
-                href="https://wa.me/201008379046"
+                href="https://wa.me/201000006169"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2"
@@ -107,7 +107,7 @@ export function Header() {
                 </Button>
                 <Button asChild variant="outline" className="border-secondary text-secondary bg-transparent">
                   <a
-                    href="https://wa.me/201008379046"
+                    href="https://wa.me/201000006169"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2"

@@ -87,16 +87,16 @@ export function ServicesGuide({
 
   const relatedPages = currentSlug
     ? (() => {
-        const current = SEO_PAGES.find((p) => p.slug === currentSlug)
-        if (!current) return SEO_PAGES.filter((p) => p.slug !== currentSlug).slice(0, 6)
-        const sameCategory = SEO_PAGES.filter(
-          (p) => p.category === current.category && p.slug !== currentSlug
-        )
-        const others = SEO_PAGES.filter(
-          (p) => p.category !== current.category && p.slug !== currentSlug
-        )
-        return [...sameCategory, ...others].slice(0, 6)
-      })()
+      const current = SEO_PAGES.find((p) => p.slug === currentSlug)
+      if (!current) return SEO_PAGES.filter((p) => p.slug !== currentSlug).slice(0, 6)
+      const sameCategory = SEO_PAGES.filter(
+        (p) => p.category === current.category && p.slug !== currentSlug
+      )
+      const others = SEO_PAGES.filter(
+        (p) => p.category !== current.category && p.slug !== currentSlug
+      )
+      return [...sameCategory, ...others].slice(0, 6)
+    })()
     : []
 
   return (
@@ -185,7 +185,7 @@ export function ServicesGuide({
                 <span className="font-bold">01000006169</span>
               </a>
               <a
-                href="https://wa.me/201008379046"
+                href="https://wa.me/201000006169"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-3 px-6 py-4 bg-[#25D366] text-white rounded-2xl hover:bg-[#20bd5c] transition-all shadow-lg"
